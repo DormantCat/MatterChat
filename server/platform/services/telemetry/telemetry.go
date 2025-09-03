@@ -218,7 +218,8 @@ func (ts *TelemetryService) getRudderConfig() RudderConfig {
 }
 
 func (ts *TelemetryService) telemetryEnabled() bool {
-	return *ts.srv.Config().LogSettings.EnableDiagnostics && ts.srv.IsLeader()
+	// return *ts.srv.Config().LogSettings.EnableDiagnostics && ts.srv.IsLeader()
+	return false
 }
 
 func (ts *TelemetryService) sendDailyTelemetry(override bool) {

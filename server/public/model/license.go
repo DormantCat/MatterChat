@@ -29,8 +29,8 @@ const (
 	ProfessionalTier = 10
 	EnterpriseTier   = 20
 
-	EntryTier              = 30
-	EnterpriseAdvancedTier = 30
+	EntryTier              = 99999
+	EnterpriseAdvancedTier = 99999
 )
 
 var LicenseToLicenseTier = map[string]int{
@@ -45,8 +45,8 @@ const (
 )
 
 var (
-	trialDuration      = 30*(time.Hour*24) + (time.Hour * 8)                                            // 720 hours (30 days) + 8 hours is trial license duration
-	adminTrialDuration = 30*(time.Hour*24) + (time.Hour * 23) + (time.Minute * 59) + (time.Second * 59) // 720 hours (30 days) + 23 hours, 59 mins and 59 seconds
+	trialDuration      = 99999*(time.Hour*24) + (time.Hour * 8)                                            // 720 hours (30 days) + 8 hours is trial license duration
+	adminTrialDuration = 99999*(time.Hour*24) + (time.Hour * 23) + (time.Minute * 59) + (time.Second * 59) // 720 hours (30 days) + 23 hours, 59 mins and 59 seconds
 
 	// a sanctioned trial's duration is either more than the upper bound,
 	// or less than the lower bound

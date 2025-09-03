@@ -46,7 +46,19 @@ func (ps *PlatformService) License() *model.License {
 	return ps.licenseValue.Load()
 }
 
+var license []byte
+
 func (ps *PlatformService) LoadLicense() {
+
+	var licenseStruct model.License
+	if err := json.Unmarshal(license, &licenseStruct); err != nil {
+		ps.logger.Warn("Failed to decode license from JSON", mlog.Err(err))
+	} else {
+		if ps.SetLicense(&licenseStruct) {
+			return
+		}
+	}
+
 	c := request.EmptyContext(ps.logger)
 
 	// ENV var overrides all other sources of license.
