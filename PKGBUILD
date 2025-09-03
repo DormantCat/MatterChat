@@ -24,14 +24,20 @@ _archive="$pkgname-$pkgver"
 source=(https://github.com/$pkgname/$pkgname-server/archive/v$pkgver/$_archive.tar.gz
         $pkgname.service
         $pkgname.sysusers
-        $pkgname.tmpfiles)
+        $pkgname.tmpfiles
+        enterprise.patch)
 sha256sums=('17aa396db23d949ee74703be8056c3c1c645e7f4ecd1e3433190e4be0c18750c'
             '9e73dc5e9ab9a95049352bd504fb4e0d6becbd5c715026d8c1df4f515d258b68'
             'f7bd36f6d7874f1345d205c6dcb79af1804362fc977a658db88951a172d1dfa0'
-            '8dfeee28655b91dc75aca2317846284013ac3d5a837d360eba9641e9fbcf3aa2')
+            '8dfeee28655b91dc75aca2317846284013ac3d5a837d360eba9641e9fbcf3aa2'
+            '')
 
 prepare() {
-    cd $_archive/server
+    cd $_archive
+    
+    patch -N -p1 <../../enterprise.patch
+
+    cd server
 
     # This will fail to download some private dependencies for enterprise-version-only features
     go mod vendor -e
