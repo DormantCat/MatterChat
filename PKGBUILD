@@ -21,7 +21,7 @@ makedepends=(git
              npm
              python)
 _archive="$pkgname-$pkgver"
-source=(https://github.com/$pkgname/$pkgname-server/archive/v$pkgver/$_archive.tar.gz
+source=(https://github.com/$pkgname/$pkgname/archive/v$pkgver/$_archive.tar.gz
         $pkgname.service
         $pkgname.sysusers
         $pkgname.tmpfiles
@@ -30,7 +30,7 @@ sha256sums=('17aa396db23d949ee74703be8056c3c1c645e7f4ecd1e3433190e4be0c18750c'
             '9e73dc5e9ab9a95049352bd504fb4e0d6becbd5c715026d8c1df4f515d258b68'
             'f7bd36f6d7874f1345d205c6dcb79af1804362fc977a658db88951a172d1dfa0'
             '8dfeee28655b91dc75aca2317846284013ac3d5a837d360eba9641e9fbcf3aa2'
-            '')
+            '2390b033329d0f08a9f2492764a02530c3152645f894ac2093c5f4325cf96ae1')
 
 prepare() {
     cd $_archive
@@ -93,7 +93,7 @@ build() {
                    -X \"$_config.BuildDate=$(date --utc --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +"%Y-%m-%d %H:%M:%S")\" \
                    -X \"$_config.BuildHash=$pkgver-$pkgrel Arch Linux ($CARCH)\" \
                    -X \"$_config.BuildHashEnterprise=none\" \
-                   -X \"$_config.BuildEnterpriseReady=false\"" \
+                   -X \"$_config.BuildEnterpriseReady=true\"" \
          -o bin/ ./...
     # Move to the client directory to avoid LDFLAGS pollution of a `make build-client` invocation
     cd ../webapp
